@@ -1,0 +1,338 @@
+[
+  {
+    "id": 1,
+    "question": "My computer won't turn on",
+    "answer": "First check if your computer is properly plugged into a working power outlet. Ensure the power cable connections are secure at both the wall outlet and the computer. Try a different power outlet or cable if available. If using a laptop, remove the battery, hold the power button for 30 seconds, then reinsert the battery and try again. If these steps don't work, there might be a hardware issue requiring technical support.",
+    "tags": ["hardware", "power", "startup", "boot", "computer", "laptop", "desktop", "troubleshooting"]
+  },
+  {
+    "id": 2,
+    "question": "I forgot my password",
+    "answer": "If you forgot your system password, contact the IT helpdesk to have it reset. For application-specific passwords, use the 'Forgot Password' option if available. Always keep your security questions and recovery email up to date. Password resets typically require identity verification to maintain security. Multi-factor authentication, if enabled, may require additional reset steps.",
+    "tags": ["password", "login", "access", "credentials", "security", "account", "authentication", "reset"]
+  },
+  {
+    "id": 3,
+    "question": "My email isn't sending/receiving",
+    "answer": "First check your internet connection. Try accessing other websites to confirm connectivity. Verify your email account settings are correct. For sending issues, ensure the recipient address is valid and your outgoing mail server (SMTP) settings are correct. For receiving issues, check your incoming mail server (POP3/IMAP) settings. Try restarting your email application. If using webmail, clear browser cache and cookies. Check if your mailbox is full and needs cleaning.",
+    "tags": ["email", "outlook", "gmail", "exchange", "communication", "sending", "receiving", "configuration"]
+  },
+  {
+    "id": 4,
+    "question": "Why is my WiFi so slow?",
+    "answer": "Slow WiFi can be caused by network congestion, distance from the router, interference, or outdated hardware. Try restarting your router, moving closer to it, or contacting IT support if the issue persists.",
+    "tags": ["wifi", "slow", "network", "connection", "performance", "speed", "troubleshooting", "internet"]
+  },
+  {
+    "id": 5,
+    "question": "My printer isn't working",
+    "answer": "Check if the printer is powered on and connected properly via USB or network. Ensure it has paper and ink/toner. Restart both the printer and your computer. Verify the printer is set as the default printer. Check for paper jams. Update or reinstall printer drivers if necessary. For network printers, confirm you're connected to the correct network and the printer is online.",
+    "tags": ["printer", "printing", "hardware", "drivers", "peripherals", "paper", "ink", "configuration"]
+  },
+  {
+    "id": 6,
+    "question": "My screen is blank/black",
+    "answer": "First, ensure your monitor is powered on and properly connected to your computer. Check that the brightness settings aren't turned all the way down. Press a key or move your mouse to wake the computer from sleep mode. Try connecting your monitor to a different video port on your computer if available. For laptops, try the function key combination (usually Fn + F4/F5) to toggle display modes. If still not working, restart your computer and check if you can see the boot screen.",
+    "tags": ["display", "monitor", "screen", "blank", "black", "video", "graphics", "troubleshooting"]
+  },
+  {
+    "id": 7,
+    "question": "How do I connect to the company VPN?",
+    "answer": "To connect to the company VPN, install the required VPN client software provided by your IT department. Launch the VPN application and enter your company credentials (username and password). Some VPNs may require multi-factor authentication. Select the appropriate server location if options are available. Click Connect and wait for confirmation of a successful connection. If you encounter issues, ensure your internet connection is stable and contact the IT helpdesk for specific configuration assistance.",
+    "tags": ["vpn", "remote", "connection", "network", "security", "access", "authentication", "work-from-home"]
+  },
+  {
+    "id": 8,
+    "question": "My computer is running very slowly",
+    "answer": "Slow computer performance can have many causes. Try restarting your computer first. Close unnecessary applications and browser tabs to free up memory. Check for and end resource-intensive processes in Task Manager (Windows) or Activity Monitor (Mac). Scan for malware and viruses. Clear temporary files and browser cache. Consider upgrading RAM if you frequently use memory-intensive applications. Defragment your hard drive (for non-SSD drives only) or run disk cleanup utilities. If the problem persists, your computer might need hardware upgrades or professional maintenance.",
+    "tags": ["performance", "slow", "speed", "memory", "cpu", "optimization", "troubleshooting", "maintenance"]
+  },
+  {
+    "id": 9,
+    "question": "I can't install software/applications",
+    "answer": "Installation problems can occur for several reasons. Ensure you have administrator privileges on your computer. Check that your system meets the minimum requirements for the software. Temporarily disable antivirus software as it may block installations. Make sure you have enough disk space. If downloading, verify the file isn't corrupted by redownloading it. For corporate environments, software installation may be restricted by group policies - contact your IT department for assistance. If seeing specific error messages, note them down to help troubleshooting.",
+    "tags": ["software", "installation", "applications", "programs", "permissions", "admin", "download", "error"]
+  },
+  {
+    "id": 10,
+    "question": "How do I recover deleted files?",
+    "answer": "First check your Recycle Bin/Trash to see if the files are there - if so, right-click and select Restore. If files were permanently deleted, try using file recovery software like Recuva or TestDisk as soon as possible (avoid writing new data to the drive). If you use cloud storage or have system backups enabled, check those services for previous versions. For critical business files, contact your IT department immediately as they may maintain enterprise backup solutions.",
+    "tags": ["data", "recovery", "deleted", "files", "restore", "backup", "recycle-bin", "documents"]
+  },
+  {
+    "id": 11,
+    "question": "My internet connection keeps dropping",
+    "answer": "Intermittent internet connections can be frustrating. Try restarting your modem and router (unplug for 30 seconds). Check all cable connections. Move closer to your WiFi router if using wireless. Reduce interference by keeping the router away from other electronic devices. Consider changing your WiFi channel in router settings. Update router firmware. Run a malware scan on your computer. If problems persist, contact your internet service provider as there might be service issues in your area.",
+    "tags": ["internet", "connection", "network", "wifi", "ethernet", "dropping", "intermittent", "troubleshooting"]
+  },
+  {
+    "id": 12,
+    "question": "How do I set up my email on my smartphone?",
+    "answer": "To set up email on your smartphone, go to the built-in email app or download your organization's preferred email app (Outlook, Gmail, etc.). Select 'Add Account' and choose your email provider or 'Other' if not listed. Enter your email address and password. For manual setup, you'll need incoming/outgoing server settings from your IT department. Enable any required security features like SSL/TLS. If your organization uses mobile device management (MDM), you may need to install a security profile. After configuration, sync your account to download existing emails.",
+    "tags": ["email", "mobile", "smartphone", "setup", "configuration", "android", "iphone", "ios"]
+  },
+  {
+    "id": 13,
+    "question": "I'm getting a blue screen error (BSOD)",
+    "answer": "Blue Screen of Death (BSOD) errors indicate system instability. Note any error codes displayed for troubleshooting. Try restarting your computer first. If it happens repeatedly, try booting in Safe Mode. Update or rollback device drivers, especially graphics and network drivers. Run Windows Memory Diagnostic to check for RAM issues. Check for overheating by ensuring proper ventilation. Run system file checker (sfc /scannow) from Command Prompt. Recent hardware or software changes often trigger BSOD errors. For persistent issues, contact IT support with the error code information.",
+    "tags": ["BSOD", "blue-screen", "crash", "error", "windows", "system", "failure", "troubleshooting"]
+  },
+  {
+    "id": 14,
+    "question": "How do I connect to a network printer?",
+    "answer": "To connect to a network printer, ensure your computer is connected to the same network. On Windows, go to Settings > Devices > Printers & scanners > Add a printer. Wait for the network search or select 'The printer that I want isn't listed' to enter an IP address manually. On Mac, go to System Preferences > Printers & Scanners > + button. Select the printer from the list or add by IP address. If the printer doesn't appear automatically, you may need printer drivers from the manufacturer's website or contact IT for printer queue names and drivers for your organization.",
+    "tags": ["printer", "network", "connection", "configuration", "setup", "installation", "drivers", "wireless"]
+  },
+  {
+    "id": 15,
+    "question": "My microphone/webcam isn't working for video calls",
+    "answer": "First check your physical connections and ensure the device isn't muted. Verify the correct microphone/webcam is selected in your video conferencing application settings. Check privacy settings on your operating system to ensure applications have permission to access your camera and microphone. Test in another application to determine if it's software or hardware related. Update drivers for your devices. Some applications may need to be restarted after connecting a new audio/video device. For laptops, check if function keys are disabling your camera or microphone.",
+    "tags": ["microphone", "webcam", "audio", "video", "meetings", "calls", "zoom", "teams"]
+  },
+  {
+    "id": 16,
+    "question": "I need to reset my multi-factor authentication (MFA)",
+    "answer": "If you're unable to access your multi-factor authentication device (lost phone, new device, etc.), contact your IT helpdesk immediately. Be prepared to verify your identity through alternative means. Do not wait until you're locked out of critical systems - request assistance as soon as you know you'll need MFA reset. If you still have access to your account, check if self-service MFA reset options are available in your account settings. Some organizations maintain backup codes for emergency access - check if you saved these previously.",
+    "tags": ["mfa", "2fa", "authentication", "security", "access", "reset", "verification", "identity"]
+  },
+  {
+    "id": 17,
+    "question": "My laptop battery drains too quickly",
+    "answer": "Poor battery life can be addressed several ways. Check which applications are consuming power in Task Manager (Windows) or Activity Monitor (Mac). Reduce screen brightness and adjust power settings to favor battery life. Close unused applications and browser tabs. Disable unnecessary background services and startup programs. Turn off Bluetooth and WiFi when not needed. For severely degraded batteries, you may need a replacement - batteries typically last 2-3 years. Run the built-in battery health check in your operating system to assess its condition.",
+    "tags": ["battery", "power", "laptop", "mobile", "energy", "performance", "drainage", "optimization"]
+  },
+  {
+    "id": 18,
+    "question": "I can't access a specific website",
+    "answer": "If you can't access a specific website while others work, first check if the URL is correct. Try accessing the site using a different browser or device on the same network. Clear your browser cache and cookies. Check if the website is blocked by your organization's content filtering policies - many companies restrict access to certain categories of websites. The site may be temporarily down - check isitdownrightnow.com or similar services. If on a company network, the site might be intentionally blocked - contact your IT department if you need access for business purposes.",
+    "tags": ["website", "access", "browser", "internet", "firewall", "proxy", "filtering", "connectivity"]
+  },
+  {
+    "id": 19,
+    "question": "How do I secure my computer against viruses and malware?",
+    "answer": "To protect against viruses and malware, ensure your operating system and applications are updated regularly. Use the company-provided antivirus software and ensure it's updating and scanning regularly. Be cautious with email attachments and links, even from known senders. Only download software from official sources. Use strong, unique passwords and enable multi-factor authentication where available. Avoid using public WiFi for sensitive work. Regularly backup important data. Report suspicious emails to your IT security team. Complete required security awareness training provided by your organization.",
+    "tags": ["security", "malware", "virus", "protection", "antivirus", "cybersecurity", "threats", "ransomware"]
+  },
+  {
+    "id": 20,
+    "question": "I need to change my display resolution",
+    "answer": "To change display resolution on Windows, right-click on the desktop and select Display Settings. Scroll down to find the resolution dropdown menu. On Mac, go to System Preferences > Displays and select your preferred resolution. Choose the recommended resolution for optimal display quality. If using external monitors, you can set different resolutions for each display. If certain resolutions are unavailable, you may need to update your graphics drivers. After changing resolution, confirm you can read text and see elements clearly before applying permanently.",
+    "tags": ["display", "resolution", "screen", "monitor", "settings", "graphics", "visual", "configuration"]
+  },
+  {
+    "id": 21,
+    "question": "My keyboard/mouse isn't working properly",
+    "answer": "For keyboard or mouse issues, first check physical connections - try a different USB port if applicable. For wireless devices, replace batteries and ensure the receiver is properly connected. Clean the device of any dust or debris. Restart your computer. Try the device on another computer to determine if it's a hardware failure. Update or reinstall drivers. For laptops, try using an external keyboard/mouse to isolate if it's a hardware or software issue. Check for keyboard language settings if specific keys are producing unexpected characters.",
+    "tags": ["keyboard", "mouse", "input", "hardware", "peripherals", "typing", "usb", "wireless"]
+  },
+  {
+    "id": 22,
+    "question": "How do I access shared network drives?",
+    "answer": "To access shared network drives on Windows, open File Explorer and click on 'This PC'. Under 'Network locations', you should see mapped drives. If not, click on 'Map network drive' from the Computer tab, enter the server path (\\\\server\\share) and assign a drive letter. On Mac, use Finder > Go > Connect to Server and enter the server address (smb://server/share). You'll need proper network permissions to access shared drives. Contact IT if you need access to specific shares for your role. For remote connections, you may need to be connected to the company VPN first.",
+    "tags": ["network", "drives", "shared", "mapping", "files", "storage", "server", "access"]
+  },
+  {
+    "id": 23,
+    "question": "My application keeps crashing",
+    "answer": "For applications that crash frequently, first try restarting the application and your computer. Ensure you have the latest version of the software - check for updates. Clear the application's cache if applicable. Temporarily disable antivirus software to check for interference. Repair or reinstall the application. Check for conflicts with other software. Ensure your system meets the minimum requirements for the application. Look for error logs that may provide specific information (Event Viewer on Windows, Console on Mac). Contact your IT support with specific error messages and frequency of crashes.",
+    "tags": ["application", "software", "crash", "error", "program", "stability", "troubleshooting", "freezing"]
+  },
+  {
+    "id": 24,
+    "question": "How do I update my computer's operating system?",
+    "answer": "For Windows, click Start > Settings > Update & Security > Windows Update and click 'Check for updates'. For Mac, click Apple menu > System Preferences > Software Update. Always save your work and back up important files before major updates. In corporate environments, updates may be managed centrally by IT - you may not have permission to update manually. Some updates require multiple restarts and may take significant time to complete. If your computer is very outdated, consider contacting IT for assistance as multiple sequential updates may be required.",
+    "tags": ["updates", "operating-system", "windows", "mac", "software", "security", "maintenance", "patches"]
+  },
+  {
+    "id": 25,
+    "question": "I'm having issues with Microsoft Office applications",
+    "answer": "For Microsoft Office issues, try repairing your Office installation through Control Panel (Windows) or the application installer (Mac). Ensure you're running the latest updates. If experiencing problems with specific files, try opening them in Safe Mode (hold Ctrl while launching the application). Clear the Office cache. Check if the issue happens with all files or just specific ones - corrupted files may need recovery. Reset application preferences if experiencing unusual behavior. For activation issues, sign out and back into your Microsoft account. If problems persist, consider uninstalling and reinstalling Office.",
+    "tags": ["office", "microsoft", "word", "excel", "powerpoint", "outlook", "productivity", "software"]
+  },
+  {
+    "id": 26,
+    "question": "How do I sync my files to the cloud?",
+    "answer": "To sync files to approved cloud storage, install the official desktop client for your organization's preferred service (OneDrive, Google Drive, Dropbox Business, etc.). Sign in with your work credentials. The application will create a special folder on your computer - files placed here automatically sync to the cloud. You can configure which folders sync in the application settings. Be mindful of storage limits and data sensitivity - check your organization's data handling policies before uploading confidential information. Enable version history features for important documents to protect against accidental changes.",
+    "tags": ["cloud", "storage", "sync", "files", "backup", "onedrive", "google-drive", "dropbox"]
+  },
+  {
+    "id": 27,
+    "question": "My headphones/speakers aren't working",
+    "answer": "For audio device issues, check physical connections and ensure the device is properly plugged in. Verify the volume isn't muted and is turned up in both system settings and on the device itself. Right-click the speaker icon in the taskbar (Windows) or check Sound preferences (Mac) to confirm the correct output device is selected. Try the audio device in another port or on another computer to rule out hardware failure. Update audio drivers. If using Bluetooth, re-pair the device. For application-specific audio problems, check the sound settings within that application.",
+    "tags": ["audio", "sound", "headphones", "speakers", "volume", "drivers", "bluetooth", "multimedia"]
+  },
+  {
+    "id": 28,
+    "question": "How do I connect to a wireless network?",
+    "answer": "To connect to WiFi, click on the network icon in the taskbar (Windows) or menu bar (Mac). Select your network from the list of available networks. Enter the password when prompted. For corporate networks, you may need to enter your username/domain credentials or install a security certificate. If you don't see the network, ensure WiFi is enabled on your device (check physical switches/function keys). For hidden networks, you'll need to know the exact network name (SSID) and select 'Connect to a hidden network'. If connecting for the first time in the office, contact IT for the correct network name and authentication method.",
+    "tags": ["wifi", "wireless", "network", "connection", "internet", "connectivity", "ssid", "password"]
+  },
+  {
+    "id": 29,
+    "question": "How do I request software for my computer?",
+    "answer": "To request new software, follow your organization's software request process, typically through the IT service portal or ticketing system. Include your business justification, specific software name and version, any licensing information, and urgency level. Some organizations have a pre-approved software catalog where you can self-service common applications. For specialized software, expect additional approval steps and security review. Budget approval may be required from your department. Installation privileges vary by organization - IT may need to install the software for you to comply with security policies.",
+    "tags": ["software", "request", "installation", "licensing", "applications", "procurement", "approval", "deployment"]
+  },
+  {
+    "id": 30,
+    "question": "My computer fan is loud/computer is overheating",
+    "answer": "Loud fans often indicate overheating. Ensure your computer's vents aren't blocked and are free from dust buildup. Place laptops on hard, flat surfaces - not on beds or cushions which can block airflow. Close demanding applications that stress your processor/graphics card. Check Task Manager/Activity Monitor for processes using high CPU. Update your system BIOS and drivers. For desktops, confirm all internal fans are working. Consider using a laptop cooling pad. If problems persist, hardware servicing may be needed as thermal paste between processor and heat sink may need replacement.",
+    "tags": ["fan", "noise", "overheating", "temperature", "cooling", "hardware", "laptop", "desktop"]
+  },
+  {
+    "id": 31,
+    "question": "I can't open a specific file type",
+    "answer": "If you can't open a file, first confirm you have an application installed that supports the file format. Right-click the file and select 'Open with' to choose an appropriate program. You may need to download a specific application or plugin. For unknown file extensions, search online to identify the format. If you recently changed default applications, you may need to reset file associations. For corrupted files, try file recovery tools. Some formats may be blocked by security policies in corporate environments - contact IT if you need to work with these files.",
+    "tags": ["files", "formats", "extensions", "applications", "compatibility", "documents", "access", "software"]
+  },
+  {
+    "id": 32,
+    "question": "How do I back up my computer files?",
+    "answer": "Follow your organization's data backup policy. Most companies provide approved backup solutions like OneDrive, Google Drive, or specialized backup software. Configure these tools to automatically back up important folders. External hard drives can supplement cloud backups for large files, but ensure they're secured properly. Critical business files should be stored on network drives that are regularly backed up by IT. Avoid storing important files only on your local hard drive or desktop. For personal devices, Windows offers File History and Mac provides Time Machine for automatic backups.",
+    "tags": ["backup", "data", "files", "recovery", "storage", "cloud", "protection", "disaster-recovery"]
+  },
+  {
+    "id": 33,
+    "question": "I need to encrypt sensitive files",
+    "answer": "For file encryption, use your organization's approved encryption tools. Most companies have specific policies and software for handling sensitive data. Windows Professional editions include BitLocker for drive encryption. Mac systems include FileVault. For individual files, Microsoft Office has built-in encryption options under File > Info > Protect Document. For cloud storage, check if your platform offers zero-knowledge encryption. Always maintain backups of encrypted files and store encryption keys/passwords securely. If sharing encrypted files, use secure methods to deliver the decryption password separately from the file.",
+    "tags": ["encryption", "security", "confidential", "data-protection", "files", "compliance", "bitlocker", "filevault"]
+  },
+  {
+    "id": 34,
+    "question": "How do I request new hardware or equipment?",
+    "answer": "To request new hardware, submit a formal request through your company's IT procurement system or ticketing portal. Include detailed business justification, specific equipment needs, and how it will impact your productivity. Requests typically require manager approval and may need budget allocation. Standard equipment (monitors, keyboards, etc.) may have simplified approval processes. For specialized equipment, expect longer approval times and possibly additional justification. Some organizations have regular refresh cycles for laptops/desktops - check if you're eligible for a scheduled upgrade before requesting new equipment.",
+    "tags": ["hardware", "equipment", "procurement", "request", "approval", "devices", "purchasing", "assets"]
+  },
+  {
+    "id": 35,
+    "question": "My USB device isn't recognized",
+    "answer": "If your USB device isn't detected, try a different USB port - some may be disabled or malfunctioning. Try another computer to determine if the issue is with the device or your computer. Restart your computer with the device connected. Check Device Manager (Windows) or System Information (Mac) to see if the device appears but has errors. You may need to install specific drivers for the device. Some corporate environments restrict USB devices for security reasons - check with IT if you have permission to use external devices. For storage devices, they may need to be formatted in a compatible file system.",
+    "tags": ["usb", "hardware", "devices", "drivers", "connection", "external", "detection", "troubleshooting"]
+  },
+  {
+    "id": 36,
+    "question": "How do I connect multiple monitors?",
+    "answer": "To set up multiple monitors, first check that your computer supports multiple displays (most modern systems do). Connect monitors to available video outputs (HDMI, DisplayPort, DVI, etc.). On Windows, right-click the desktop and select Display Settings to arrange and configure monitors. On Mac, go to System Preferences > Displays > Arrangement. You can set monitors to mirror (show the same content) or extend (act as one large desktop). If monitors aren't detected, try updating graphics drivers. Some laptops require function key combinations to activate external displays. You may need adapters for certain connections.",
+    "tags": ["monitors", "display", "dual-screen", "setup", "configuration", "screen", "desktop", "extended"]
+  },
+  {
+    "id": 37,
+    "question": "I need help with video conferencing/remote meetings",
+    "answer": "For video conferencing issues, ensure you have the latest version of your meeting software (Teams, Zoom, WebEx, etc.). Test your audio and video before important meetings using the application's built-in test features. Close unnecessary applications to improve performance. Use wired internet connections when possible for stability. Consider using headphones to prevent audio feedback. Familiarize yourself with meeting controls like mute/unmute and screen sharing. For persistent issues, check your organization's knowledge base for specific troubleshooting for your approved meeting platforms. Ensure your camera and microphone permissions are enabled at the operating system level.",
+    "tags": ["video", "conferencing", "remote", "meetings", "zoom", "teams", "webex", "audio-visual"]
+  },
+  {
+    "id": 38,
+    "question": "How do I report a suspected security incident?",
+    "answer": "Report security incidents immediately to your IT security team via the designated reporting channel (specific email, phone number, or ticketing system). Include all relevant details: what happened, when you noticed it, systems/data potentially affected, and actions you've taken. Don't attempt to investigate on your own or discuss sensitive security matters over public channels. For suspicious emails, use your email client's 'Report Phishing' feature if available. Disconnect from the network (but don't shut down) a potentially compromised computer until security personnel provide guidance. Follow your organization's security incident response protocol.",
+    "tags": ["security", "incident", "phishing", "breach", "malware", "reporting", "cybersecurity", "compliance"]
+  },
+  {
+    "id": 39,
+    "question": "I need access to a specific system or application",
+    "answer": "To request system access, submit a formal request through your company's access management system or IT service portal. Include the specific system name, level of access needed, business justification, and timeframe required. Most access requests require manager approval and may need additional approvals for sensitive systems. Some organizations have role-based access control - check if your job role automatically qualifies you for access. Temporary access may be available for short-term projects. Be prepared to complete any required training before access is granted, especially for systems with compliance requirements.",
+    "tags": ["access", "permissions", "systems", "applications", "authorization", "accounts", "privileges", "onboarding"]
+  },
+  {
+    "id": 40,
+    "question": "How do I troubleshoot my Outlook/email client?",
+    "answer": "For Outlook issues, first ensure you're online and can access other internet services. Restart Outlook or your email client. Check for and install updates. Verify your account settings are correct under Account Settings. Run the built-in repair tools (File > Account Settings > Repair). For performance issues, consider using Outlook in safe mode (hold Ctrl while launching) or creating a new profile. Large mailboxes can cause slowness - archive older emails regularly. If receiving/sending specific emails is problematic, check for size limits or content filtering. For persistent issues, the scanpst.exe utility can repair corrupted PST files.",
+    "tags": ["outlook", "email", "exchange", "mail", "office365", "client", "configuration", "troubleshooting"]
+  },
+  {
+    "id": 41,
+    "question": "My screen is flickering",
+    "answer": "Screen flickering can be caused by several issues. Update your graphics drivers to the latest version. Check monitor cables and connections - loose or damaged cables can cause flickering. Adjust your monitor's refresh rate in display settings. Disable hardware acceleration in applications that offer this setting. If flickering occurs only in certain applications, try reinstalling them. For laptops, flickering may indicate inverter or LCD issues requiring hardware service. Try connecting an external monitor to determine if the issue is with the display hardware or graphics processing.",
+    "tags": ["screen", "display", "flickering", "monitor", "graphics", "visual", "drivers", "troubleshooting"]
+  },
+  {
+    "id": 42,
+    "question": "How do I securely dispose of old equipment?",
+    "answer": "Never dispose of company equipment in regular trash or recycling - this creates security risks and may violate environmental regulations. Follow your organization's asset disposal process, usually managed by IT. Submit a disposal request through your IT portal. IT will ensure data is securely wiped according to company standards before recycling or disposing of hardware. Do not donate or repurpose work equipment without explicit authorization. For personal devices that contained work data, consult IT for secure data removal procedures before disposal. Keep records of equipment disposal for audit purposes.",
+    "tags": ["disposal", "equipment", "security", "recycling", "data-removal", "wiping", "hardware", "compliance"]
+  },
+  {
+    "id": 43,
+    "question": "My computer has a virus/malware",
+    "answer": "If you suspect malware infection, immediately disconnect from the network (unplug Ethernet/disable WiFi) but don't shut down the computer. Contact your IT security team immediately through a separate device. Provide details of suspicious behaviors and any actions leading to the suspected infection. Do not attempt to remove malware yourself as this may complicate professional remediation efforts. Do not log into sensitive accounts from the infected device. IT security may need to isolate and analyze the system. Be prepared for potential system rebuilding which may result in data loss if you haven't maintained proper backups.",
+    "tags": ["virus", "malware", "infection", "security", "ransomware", "antivirus", "remediation", "threat"]
+  },
+  {
+    "id": 44,
+    "question": "I need to replace my laptop battery",
+    "answer": "For company-owned devices, battery replacement should be handled through your organization's IT hardware support process. Submit a ticket describing battery performance issues - include specific symptoms like short runtime or unexpected shutdowns. IT may run diagnostics to confirm battery health before approving replacement. Some organizations have warranty or service contracts that cover battery replacement. For user-replaceable batteries, ensure you order the exact model specified for your laptop. For built-in batteries (most modern laptops), professional installation is recommended. Keep your data backed up before any hardware service.",
+    "tags": ["battery", "hardware", "laptop", "replacement", "power", "maintenance", "service", "warranty"]
+  },
+  {
+    "id": 45,
+    "question": "How do I set up out-of-office replies in email?",
+    "answer": "In Outlook desktop, go to File > Automatic Replies (Out of Office). Select 'Send automatic replies' and set a date range if desired. Create separate messages for inside and outside your organization. In Outlook Web Access (OWA), click Settings (gear icon) > View all Outlook settings > Mail > Automatic replies. For Gmail, go to Settings > See all settings > General > Vacation responder. Include your return date and alternative contact information in your message. Consider setting up email delegation for critical matters during extended absences. Disable automatic replies when you return if they don't auto-disable.",
+    "tags": ["email", "out-of-office", "automatic-reply", "outlook", "gmail", "vacation", "absence", "communication"]
+  },
+  {
+    "id": 46,
+    "question": "hello",
+    "answer": "Hello! How can I help you today?",
+    "tags": ["hello", "hi", "greet", "hey", "morning"]
+  },
+  {
+    "id": 47,
+    "question": "hi",
+    "answer": "Hi there! What can I do for you?",
+    "tags": ["hi", "hello", "greet", "hey"]
+  },
+  {
+    "id": 48,
+    "question": "good morning",
+    "answer": "Good morning! How can I assist you?",
+    "tags": ["good morning", "morning", "hello", "greet"]
+  },
+  {
+    "id": 49,
+    "question": "good afternoon",
+    "answer": "Good afternoon! How may I help you?",
+    "tags": ["good afternoon", "afternoon", "hello", "greet"]
+  },
+  {
+    "id": 50,
+    "question": "hey",
+    "answer": "Hey! Need any assistance?",
+    "tags": ["hey", "hello", "hi", "greet"]
+  },
+  {
+    "id": 51,
+    "question": "how are you",
+    "answer": "I'm good, thanks for asking! How can I assist you today?",
+    "tags": ["how are you", "how", "are you", "greet", "status"]
+  },
+  {
+    "id": 52,
+    "question": "what's up",
+    "answer": "Not much! How can I help you today?",
+    "tags": ["what's up", "whats up", "hi", "greet"]
+  },
+  {
+    "id": 53,
+    "question": "good evening",
+    "answer": "Good evening! How may I assist you?",
+    "tags": ["good evening", "evening", "hello", "greet"]
+  },
+  {
+    "id": 54,
+    "question": "nice to meet you",
+    "answer": "Nice to meet you too! How can I help?",
+    "tags": ["nice to meet you", "greet", "hello"]
+  },
+  {
+    "id": 55,
+    "question": "welcome",
+    "answer": "Welcome! Feel free to ask me any questions.",
+    "tags": ["welcome", "greet", "hello"]
+  },
+  {
+    "id": 56,
+    "question": "How can I hide my IP address?",
+    "answer": "You can hide your IP address using a VPN (Virtual Private Network), a proxy server, or the Tor network. These tools mask your real IP address and help protect your privacy online.",
+    "tags": ["hide", "IP", "address", "VPN", "proxy", "anonymity", "privacy", "mask"]
+  }
+]
