@@ -19,6 +19,8 @@ public class Main {
         OllamaClient ollamaClient = new OllamaClient();
         System.out.println("Ollama client initialized. Will be used as fallback.");
 
+        ConversationLogger logger = new ConversationLogger("chatbot_conversations.db");
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("Welcome to the Helpdesk chatbot! Type your question below (type 'exit' to quit):");
 
@@ -50,20 +52,32 @@ public class Main {
             }
 
             double similarityThreshold = 0.34;
-
+            String ollamaResponse = "";
+            String localResponse = "";
             if (bestDocIdx != -1 && bestScore >= similarityThreshold) {
-                System.out.println("Answer: " + kbEntries.get(bestDocIdx).answer);
+                localResponse = kbEntries.get(bestDocIdx).answer;
+                System.out.println("Answer: " + localResponse);
                 System.out.println("Similarity score: " + bestScore);
+                ollamaResponse = null;  // no fallback needed
             } else {
                 System.out.println("No good match found locally. Sending prompt to Ollama...");
+                localResponse = null;
                 try {
-                    String ollamaResponse = ollamaClient.answerHelpdeskQuestion(userPrompt);
+                    ollamaResponse = ollamaClient.answerHelpdeskQuestion(userPrompt);
                     System.out.println("Ollama response: " + ollamaResponse);
                 } catch (Exception e) {
                     System.out.println("Error connecting to Ollama: " + e.getMessage());
                     System.out.println("Please make sure Ollama is running on your system.");
                 }
             }
+
+            // Log both local and Ollama responses (one may be null)
+            try {
+                logger.logConversation(userPrompt, localResponse, ollamaResponse);
+            } catch (Exception e) {
+                System.err.println("Failed to log conversation: " + e.getMessage());
+            }
+
         }
 
         scanner.close();
