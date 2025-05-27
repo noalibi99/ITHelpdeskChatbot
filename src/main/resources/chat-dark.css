@@ -122,3 +122,31 @@
     -fx-background-color: #3a3a3a;
     -fx-cursor: hand;
 }
+/* Styles pour les boutons de feedback */
+.feedback-button {
+    -fx-font-size: 12px;
+    -fx-padding: 5 10 5 10;
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.feedback-button.positive {
+    -fx-background-color: #28a745; /* Vert pour "Utile" */
+}
+
+.feedback-button.positive:hover {
+    -fx-background-color: #218838;
+}
+
+.feedback-button.negative {
+    -fx-background-color: #dc3545; /* Rouge pour "Non Utile" */
+}
+
+.feedback-button.negative:hover {
+    -fx-background-color: #c82333;
+}
+
+.feedback-button:disabled {
+    -fx-opacity: 0.4;
+}

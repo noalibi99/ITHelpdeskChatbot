@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.ResultSet;
 
 public class ConversationLogger {
     private final String dbUrl;
@@ -23,7 +24,8 @@ public class ConversationLogger {
                     "timestamp DATETIME DEFAULT CURRENT_TIMESTAMP," +
                     "user_input TEXT," +
                     "local_response TEXT," +
-                    "ollama_response TEXT)";
+                    "ollama_response TEXT," +
+                    "feedback TEXT)";
             stmt.execute(sql);
         }
     }
@@ -35,14 +37,23 @@ public class ConversationLogger {
         return connection;
     }
 
-    public void logConversation(String userInput, String localResponse, String ollamaResponse) throws SQLException {
+    public long logConversation(String userInput, String localResponse, String ollamaResponse) throws SQLException {
         String sql = "INSERT INTO conversations (user_input, local_response, ollama_response) VALUES (?, ?, ?)";
         try (Connection conn = getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, userInput);
             stmt.setString(2, localResponse);
             stmt.setString(3, ollamaResponse);
             stmt.executeUpdate();
+
+            // Récupérer l'ID généré
+            try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    return generatedKeys.getLong(1); // Retourner l'ID auto-incrémenté
+                } else {
+                    throw new SQLException("Failed to retrieve generated ID.");
+                }
+            }
         }
     }
 

@@ -20,9 +20,10 @@ import org.kordamp.ikonli.javafx.FontIcon;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.concurrent.*;
 
 public class ChatBot extends Application {
-
+    private BorderPane root;
     private VBox chatHistory;
     private ScrollPane scrollPane;
     private TextField userInput;
@@ -42,10 +43,10 @@ public class ChatBot extends Application {
             return;
         }
 
-        // Layout principal
-        BorderPane root = new BorderPane();
+        // Root Layout
+        root = new BorderPane();
 
-        // Navbar améliorée
+        // Top Bar
         HBox topBar = new HBox(10);
         topBar.setPadding(new Insets(10, 15, 10, 15));
         topBar.getStyleClass().add("top-bar");
@@ -64,14 +65,12 @@ public class ChatBot extends Application {
                 logo.setFitHeight(30);
                 logo.setPreserveRatio(true);
                 logo.setSmooth(true);
-            } else {
-                System.err.println("Error: Could not load robot.png");
             }
         } catch (Exception e) {
             System.err.println("Error loading image: " + e.getMessage());
         }
 
-        Label appName = new Label("Support Chatbot");
+        Label appName = new Label("TechSolver");
         appName.getStyleClass().add("top-bar-label");
 
         topBar.getChildren().addAll(toggleSidebarButton, logo != null ? logo : new Label("Logo Missing"), appName);
@@ -92,7 +91,7 @@ public class ChatBot extends Application {
         historyListView = new ListView<>();
         historyListView.getStyleClass().add("history-list");
         updateHistoryList();
-        // Ajout de l'événement de clic pour recharger la conversation
+
         historyListView.setOnMouseClicked(e -> {
             String selected = historyListView.getSelectionModel().getSelectedItem();
             if (selected != null) {
@@ -101,8 +100,40 @@ public class ChatBot extends Application {
                 if (parts.length == 2) {
                     String userInputText = parts[0].replace("User: ", "").trim();
                     String responseText = parts[1].replace("Response: ", "").trim();
+                    int conversationId = -1;
+
+                    try {
+                        List<String> fullHistory = chatbotEngine.getConversationHistory();
+                        int selectedIndex = historyListView.getSelectionModel().getSelectedIndex();
+                        if (selectedIndex >= 0 && selectedIndex < fullHistory.size()) {
+                            String fullEntry = fullHistory.get(selectedIndex);
+                            String[] fullParts = fullEntry.split("\\|");
+                            if (fullParts.length == 2) {
+                                String fullUserInputText = fullParts[0].replace("User: ", "").replaceAll("^[0-9]+:\\s*", "").trim();
+                                if (fullUserInputText.equals(userInputText)) {
+                                    String[] userParts = fullParts[0].split(":");
+                                    if (userParts.length >= 2) {
+                                        conversationId = Integer.parseInt(userParts[1].trim());
+                                    }
+                                }
+                            }
+                        }
+                    } catch (SQLException | NumberFormatException ex) {
+                        System.err.println("Error retrieving conversation ID: " + ex.getMessage());
+                    }
+
                     addMessageToChat("Utilisateur", userInputText);
-                    addMessageToChat("Bot", responseText);
+                    try {
+                        ChatbotEngine.ResponseInfo responseInfo = chatbotEngine.getResponseFromHistory(conversationId);
+                        if (responseInfo != null) {
+                            addMessageToChat("Bot", responseInfo.response, conversationId);
+                        } else {
+                            addMessageToChat("Bot", responseText, conversationId);
+                        }
+                    } catch (Exception ex) {
+                        System.err.println("Error retrieving response from history: " + ex.getMessage());
+                        addMessageToChat("Bot", responseText, conversationId);
+                    }
                 }
             }
         });
@@ -124,12 +155,12 @@ public class ChatBot extends Application {
         sidebar.getChildren().addAll(newChatButton, historyListView, clearHistoryButton);
         root.setLeft(sidebar);
 
-        // Zone de chat
+        // Chat Area
         chatHistory = new VBox(12);
         chatHistory.setPadding(new Insets(15));
         chatHistory.setPrefWidth(580);
 
-        typingIndicator = new Label();
+        typingIndicator = new Label("Typing...");
         typingIndicator.setTextFill(Color.LIGHTGRAY);
         typingIndicator.setPadding(new Insets(5, 10, 5, 10));
         typingIndicator.setVisible(false);
@@ -145,13 +176,11 @@ public class ChatBot extends Application {
         scrollPane.getStyleClass().add("chat-scroll-pane");
 
         chatHistory.prefWidthProperty().bind(scrollPane.widthProperty().subtract(20));
-
         root.setCenter(scrollPane);
 
-        // Zone de saisie en bas
+        // Input Area
         userInput = new TextField();
         userInput.setPromptText("Ask your question here...");
-        userInput.setPrefWidth(480);
         userInput.getStyleClass().add("chat-input");
 
         sendButton = new Button();
@@ -159,23 +188,24 @@ public class ChatBot extends Application {
         sendButton.getStyleClass().add("chat-send-button");
         sendButton.setOnAction(e -> handleUserInput());
 
+        // Responsive binding
         userInput.prefWidthProperty().bind(scrollPane.widthProperty().subtract(sendButton.widthProperty()).subtract(40));
 
         HBox inputArea = new HBox(10, userInput, sendButton);
         inputArea.setPadding(new Insets(15));
-        inputArea.setAlignment(Pos.CENTER);
+        inputArea.setAlignment(Pos.CENTER_RIGHT);
         inputArea.getStyleClass().add("input-area");
 
-        root.setBottom(inputArea);
+        root.setBottom(inputArea); // ✅ Ensure this line is present
+
         root.getStyleClass().add("root-pane");
 
         Scene scene = new Scene(root, 1000, 500);
         scene.getStylesheets().add(getClass().getResource("/chat-dark.css").toExternalForm());
 
-        stage.setTitle("Technical Support Chatbot - Dark Theme");
+        stage.setTitle("TechSolver - Dark Theme");
         stage.setScene(scene);
         stage.show();
-
         userInput.requestFocus();
 
         stage.setOnCloseRequest(e -> {
@@ -191,6 +221,7 @@ public class ChatBot extends Application {
         sidebarVisible = !sidebarVisible;
         sidebar.setVisible(sidebarVisible);
         sidebar.setManaged(sidebarVisible);
+        root.requestLayout(); // Force layout refresh
     }
 
     private void startNewChat() {
@@ -207,7 +238,15 @@ public class ChatBot extends Application {
         try {
             List<String> history = chatbotEngine.getConversationHistory();
             historyListView.getItems().clear();
-            historyListView.getItems().addAll(history);
+            for (String entry : history) {
+                String[] parts = entry.split("\\|");
+                if (parts.length == 2) {
+                    String userInputText = parts[0].replace("User: ", "").replaceAll("^[0-9]+:\\s*", "").trim();
+                    String responseTextRaw = parts[1].replace("Response: ", "").trim();
+                    String responseTextPreview = responseTextRaw.length() > 15 ? responseTextRaw.substring(0, 15) + "..." : responseTextRaw;
+                    historyListView.getItems().add("User: " + userInputText + " | Response: " + responseTextPreview);
+                }
+            }
         } catch (SQLException e) {
             System.err.println("Error retrieving history: " + e.getMessage());
         }
@@ -219,30 +258,43 @@ public class ChatBot extends Application {
 
         addMessageToChat("Utilisateur", question);
         userInput.clear();
-
         typingIndicator.setVisible(true);
         typingIndicator.setText("Searching...");
 
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Future<ChatbotEngine.ResponseInfo> future = executor.submit(() -> {
+            Thread.sleep(800);
+            return chatbotEngine.getResponse(question);
+        });
+
         new Thread(() -> {
             try {
-                Thread.sleep(800);
-                ChatbotEngine.ResponseInfo responseInfo = chatbotEngine.getResponse(question);
+                ChatbotEngine.ResponseInfo responseInfo = future.get();
+                final String displayMessage = responseInfo.response != null ? responseInfo.response : "No response available";
+                final String source = responseInfo.source != null ? responseInfo.source : "Unknown";
+                final int conversationIdFinal = responseInfo.conversationId;
+
                 javafx.application.Platform.runLater(() -> {
-                    String displayMessage = responseInfo.response;
-                    if ("Ollama".equals(responseInfo.source)) {
-                        displayMessage += "\n(Response provided by Ollama)";
-                    } else if ("Erreur".equals(responseInfo.source)) {
-                        displayMessage += "\n(Error connecting to Ollama)";
+                    String messageToShow = displayMessage;
+                    if ("Ollama".equals(source)) {
+                        messageToShow += "\n(Response provided by Ollama)";
+                    } else if ("Erreur".equals(source)) {
+                        messageToShow += "\n(Error connecting to Ollama)";
                     }
-                    addMessageToChat("Bot", displayMessage);
+
+                    addMessageToChat("Bot", messageToShow, conversationIdFinal);
                     typingIndicator.setVisible(false);
-                    updateHistoryList(); // Mise à jour de l'historique après chaque réponse
+                    updateHistoryList();
                 });
+
             } catch (Exception e) {
+                System.err.println("Error processing response: " + e.getMessage());
                 javafx.application.Platform.runLater(() -> {
-                    addMessageToChat("Bot", "Error: " + e.getMessage());
+                    addMessageToChat("Bot", "Error: " + e.getMessage(), -1);
                     typingIndicator.setVisible(false);
                 });
+            } finally {
+                executor.shutdownNow();
             }
         }).start();
 
@@ -256,12 +308,12 @@ public class ChatBot extends Application {
                 .showInformation();
     }
 
-    private void addMessageToChat(String sender, String message) {
-        VBox messageContainer = new VBox();
+    private void addMessageToChat(String sender, String message, int conversationId) {
+        VBox messageContainer = new VBox(5);
         messageContainer.setPadding(new Insets(8, 12, 8, 12));
-        messageContainer.setMaxWidth(520);
+        messageContainer.setAlignment(sender.equals("Utilisateur") ? Pos.CENTER_RIGHT : Pos.CENTER_LEFT);
 
-        Label messageLabel = new Label(message);
+        Label messageLabel = new Label(message != null ? message : "No message available");
         messageLabel.setWrapText(true);
         messageLabel.setMaxWidth(360);
         messageLabel.getStyleClass().add("message-label");
@@ -271,16 +323,66 @@ public class ChatBot extends Application {
         statusLabel.setStyle("-fx-font-size: 10px; -fx-text-fill: gray;");
 
         if (sender.equals("Utilisateur")) {
-            messageContainer.setAlignment(Pos.CENTER_RIGHT);
             messageLabel.getStyleClass().add("user-message");
             statusLabel.setText("Sent");
         } else {
-            messageContainer.setAlignment(Pos.CENTER_LEFT);
             messageLabel.getStyleClass().add("bot-message");
-            statusLabel.setText("");
+            if (conversationId != -1) {
+                try {
+                    String feedback = chatbotEngine.getFeedback(conversationId);
+                    statusLabel.setText(feedback != null ? "Feedback: " + (feedback.equals("positive") ? "Utile" : "Non Utile") : "");
+                } catch (SQLException e) {
+                    statusLabel.setText("Error retrieving feedback");
+                }
+            }
         }
 
         messageContainer.getChildren().addAll(messageLabel, statusLabel);
+
+        if (!sender.equals("Utilisateur") && conversationId != -1) {
+            try {
+                String feedback = chatbotEngine.getFeedback(conversationId);
+                if (feedback == null) {
+                    HBox feedbackBox = new HBox(5);
+                    Button thumbsUpButton = new Button("Utile");
+                    thumbsUpButton.getStyleClass().addAll("feedback-button", "positive");
+                    Button thumbsDownButton = new Button("Non Utile");
+                    thumbsDownButton.getStyleClass().addAll("feedback-button", "negative");
+
+                    thumbsUpButton.setOnAction(e -> {
+                        try {
+                            chatbotEngine.submitFeedback(conversationId, true);
+                            statusLabel.setText("Feedback: Utile");
+                            thumbsUpButton.setDisable(true);
+                            thumbsDownButton.setDisable(true);
+                            updateHistoryList();
+                            Notifications.create().title("Feedback Submitted").text("Utile").darkStyle().showInformation();
+                        } catch (SQLException ex) {
+                            showErrorNotification("Failed to record feedback: " + ex.getMessage());
+                        }
+                    });
+
+                    thumbsDownButton.setOnAction(e -> {
+                        try {
+                            chatbotEngine.submitFeedback(conversationId, false);
+                            statusLabel.setText("Feedback: Non Utile");
+                            thumbsUpButton.setDisable(true);
+                            thumbsDownButton.setDisable(true);
+                            updateHistoryList();
+                            Notifications.create().title("Feedback Submitted").text("Non Utile").darkStyle().showInformation();
+                        } catch (SQLException ex) {
+                            showErrorNotification("Failed to record feedback: " + ex.getMessage());
+                        }
+                    });
+
+                    feedbackBox.getChildren().addAll(thumbsUpButton, thumbsDownButton);
+                    messageContainer.getChildren().add(feedbackBox);
+                }
+            } catch (SQLException e) {
+                System.err.println("Error checking feedback: " + e.getMessage());
+            }
+        }
+
         messageContainer.setOpacity(0);
         chatHistory.getChildren().add(messageContainer);
 
@@ -294,9 +396,24 @@ public class ChatBot extends Application {
 
         fade.play();
         slide.play();
+
+        scrollPane.layout();
+        scrollPane.setVvalue(1.0);
+    }
+
+    private void addMessageToChat(String sender, String message) {
+        addMessageToChat(sender, message, -1);
+    }
+
+    private void showErrorNotification(String message) {
+        Notifications.create()
+                .title("Error")
+                .text(message)
+                .darkStyle()
+                .showError();
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 }
