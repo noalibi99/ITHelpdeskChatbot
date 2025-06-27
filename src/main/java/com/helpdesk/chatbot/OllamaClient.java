@@ -14,7 +14,7 @@ import org.json.JSONObject;
  */
 public class OllamaClient {
     private static final String DEFAULT_URL = "http://localhost:11434/api/generate";
-    private static final String DEFAULT_MODEL = "llama3";
+    private static final String DEFAULT_MODEL = "llama3.2";
 
     private final String apiUrl;
     private final String model;
